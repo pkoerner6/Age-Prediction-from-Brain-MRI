@@ -8,13 +8,10 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import mutual_info_classif
-from xgboost import XGBRegressor
-from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.ensemble import ExtraTreesRegressor
 from lazypredict.Supervised import LazyRegressor
 from sklearn.utils import all_estimators
 from sklearn.base import RegressorMixin
-import lightgbm as lgbm
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -163,7 +160,6 @@ def run_lazy_regressor(df_x: pd.DataFrame, df_y: pd.DataFrame) -> None:
         est[1] for est in all_estimators() if (issubclass(est[1], RegressorMixin) and (est[0] in chosen_regressors))
     ]
     regressors.append(XGBRegressor)
-    # regressors.append(lgbm.LGBMRegressor)
 
     regressor = LazyRegressor(
         verbose=1,
